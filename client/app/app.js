@@ -9,6 +9,7 @@ import 'angular-socket-io';
 
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
+import formly from 'angular-formly';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
 
@@ -32,7 +33,7 @@ import socket from '../components/socket/socket.service';
 import './app.scss';
 
 angular.module('es41App', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-    uiBootstrap, _Auth, account, admin, navbar, footer, main, leo, event, constants, socket, util
+    uiBootstrap, _Auth, account, admin, navbar, footer, main, leo, event, constants, socket, util, formly
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

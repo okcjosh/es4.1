@@ -4,7 +4,11 @@ import routing from './leo.routes';
 
 export class LeoController {
   awesomeLeos = [];
-  newLeo = '';
+  newLeo = {
+    leoName: '',
+    leoInfo: '',
+    leoActive: ''
+  };
 
   /*@ngInject*/
   constructor($http, $scope, socket) {
@@ -22,12 +26,14 @@ export class LeoController {
         this.awesomeLeos = response.data;
         this.socket.syncUpdates('leo', this.awesomeLeos);
       });
-
   }
+
   addLeo() {
     if(this.newLeo) {
       this.$http.post('/api/leos', {
-        name: this.newLeo
+        leoName: this.newLeo,
+        leoInfo: this.leoInfo,
+        leoActive: this.leoActive
       });
       this.newLeo = '';
     }
@@ -37,7 +43,6 @@ export class LeoController {
     this.$http.delete(`/api/leos/${leo._id}`);
   }
 }
-
 
 export default angular.module('es41App.leo', [uiRouter])
   .config(routing)

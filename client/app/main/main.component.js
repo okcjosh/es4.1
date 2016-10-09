@@ -5,8 +5,8 @@ import routing from './main.routes';
 export class MainController {
   awesomeThings = [];
   newThing = '';
-  awesomeLeos = [];
-  newLeo = '';
+  // awesomeLeos = [];
+  // newLeo = '';
 
   /*@ngInject*/
   constructor($http, $scope, socket) {
@@ -15,7 +15,7 @@ export class MainController {
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
-      socket.unsyncUpdates('leo');
+      // socket.unsyncUpdates('leo');
     });
   }
 
@@ -25,11 +25,11 @@ export class MainController {
         this.awesomeThings = response.data;
         this.socket.syncUpdates('thing', this.awesomeThings);
       });
-    this.$http.get('/api/leos')
-      .then(response => {
-        this.awesomeLeos = response.data;
-        this.socket.syncUpdates('leo', this.awesomeLeos);
-      });
+    // this.$http.get('/api/leos')
+    //   .then(response => {
+    //     this.awesomeLeos = response.data;
+    //     this.socket.syncUpdates('leo', this.awesomeLeos);
+    //   });
   }
 
   addThing() {
@@ -40,21 +40,21 @@ export class MainController {
       this.newThing = '';
     }
   }
-  addLeo() {
-    if(this.newLeo) {
-      this.$http.post('/api/leos', {
-        name: this.newLeo
-      });
-      this.newLeo = '';
-    }
-  }
+  // addLeo() {
+  //   if(this.newLeo) {
+  //     this.$http.post('/api/leos', {
+  //       leoName: this.newLeo
+  //     });
+  //     this.newLeo = '';
+  //   }
+  // }
 
   deleteThing(thing) {
     this.$http.delete(`/api/things/${thing._id}`);
   }
-  deleteLeo(leo) {
-    this.$http.delete(`/api/leos/${leo._id}`);
-  }
+  // deleteLeo(leo) {
+  //   this.$http.delete(`/api/leos/${leo._id}`);
+  // }
 }
 
 
